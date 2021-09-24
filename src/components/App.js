@@ -47,12 +47,13 @@ function App() {
   // * Funcion render
   const renderData = () => {
     return data
-    // .filter((aData) => {
-    //   return (
-    //     filterData  === 'openOnWeekdays' ? aData.openOnWeekend : null ||
-    //     filterData === 'openOnWeekend' ? aData.openOnWeekend === true : null
-    //   );
-    // })
+    .filter((aData) => {
+      if (filterData  === 'openOnWeekdays') {
+        return aData.openOnWeekdays === true
+      } else if (filterData === 'openOnWeekend') {
+        return aData.openOnWeekend === true
+      } return true
+    })
     .map((aData, index) => {
       return (
         <article key={index}>
