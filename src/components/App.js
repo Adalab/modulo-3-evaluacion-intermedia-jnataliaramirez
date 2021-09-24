@@ -9,20 +9,18 @@ function App() {
   const [nameClub, setNameClub] = useState(''); 
   const [week, setWeek] = useState(false);
   const [weekend, setWeekend] = useState(false);
+  const [filterData, setFilterData] = useState('Todos');
 
 
   // * Funciones manejadoras
   const handleFormInput = (ev) => {
     setNameClub(ev.target.value)
-
   }
 
   const handleFormWeek = (ev) => {
-    console.log(ev.target.checked)
     setWeek(ev.target.checked);
   }
   const handleFormWeekend = (ev) => {
-    console.log(ev.target.checked)
     setWeekend(ev.target.checked);
   }
 
@@ -38,12 +36,24 @@ function App() {
     setData( [...data, newClub]);
 
     setNameClub('');
-
   }
+
+  const handleFilter = (ev) => {
+    setFilterData(ev.target.value);
+  }
+
+
 
   // * Funcion render
   const renderData = () => {
-    return data.map((aData, index) => {
+    return data
+    // .filter((aData) => {
+    //   return (
+    //     filterData  === 'openOnWeekdays' ? aData.openOnWeekend : null ||
+    //     filterData === 'openOnWeekend' ? aData.openOnWeekend === true : null
+    //   );
+    // })
+    .map((aData, index) => {
       return (
         <article key={index}>
           <h3>
@@ -66,10 +76,10 @@ function App() {
       <header>
         <h1>Mis clubs</h1>
         <p>Mostrar</p>
-        <select name="filter" id="filter">
+        <select name="filter" id="filter" onChange={handleFilter}>
           <option value="all">Todos</option>
-          <option value="week">los que abren entre semana</option>
-          <option value="weekend">los que abren el fin de semana </option>
+          <option value="openOnWeekdays">Los que abren entre semana</option>
+          <option value="openOnWeekend">Los que abren el fin de semana </option>
         </select>
       </header>
       <main>
