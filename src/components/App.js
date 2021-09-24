@@ -6,14 +6,14 @@ import { useState } from "react";
 function App() {
   // * Variables
   const [data, setData] = useState(dataOriginal);
-  const [nameClub, SetNameClub] = useState(''); 
+  const [nameClub, setNameClub] = useState(''); 
   const [week, setWeek] = useState(false);
   const [weekend, setWeekend] = useState(false);
 
 
   // * Funciones manejadoras
   const handleFormInput = (ev) => {
-    console.log(ev.target.value)
+    setNameClub(ev.target.value)
 
   }
 
@@ -30,10 +30,15 @@ function App() {
     ev.preventDefault();
 
     const newClub = {
-      "name": 
-    }
+      "name": nameClub,
+      "openOnWeekdays": week,
+      "openOnWeekend": weekend
+    };
 
-    console.log('click')
+    setData( [...data, newClub]);
+
+    setNameClub('');
+
   }
 
   // * Funcion render
@@ -82,7 +87,7 @@ function App() {
                   type="text" 
                   name="name" 
                   id="name" 
-                  // value=""
+                  value={nameClub}
                   onChange={handleFormInput}
                   />
               </label>
@@ -93,7 +98,7 @@ function App() {
                   id="openWeek"
                   type="checkbox"
                   name="openWeek"
-                  // value=""
+                  value={week}
                   onChange={handleFormWeek}
                 />
                 ¿Abre entre semana?
@@ -105,7 +110,7 @@ function App() {
                   id="openWeekEnd"
                   type="checkbox"
                   name="openWeekEnd"
-                  // value=""
+                  value={weekend}
                   onChange={handleFormWeekend}
                 />
                 ¿Abre los fines de semana?
