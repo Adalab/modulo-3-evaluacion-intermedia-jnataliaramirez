@@ -10,7 +10,7 @@ body {
 
   select {
     text-align: center;
-    width: 200px;
+    width: 250px;
     margin: auto;
     margin-bottom: 15px;
   }
@@ -18,11 +18,23 @@ body {
 
 .card {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 
   @media screen and (min-width: 765px) {
   grid-template-columns: 1fr 1fr 1fr;
     
+  }
+
+  @media screen and (min-width: 1020px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+      
+    }
+  
+
+  i {
+    position: relative;
+    right: -10%;
+    cursor: pointer;
   }
 
   &__item {
@@ -33,11 +45,18 @@ body {
     width: 250px;
     padding: 0 0 0 10px;
     border-radius: 15px;
+
+    @media screen and (min-width: 765px) {
+    width: 200px;
+        
   }
-}
+} }
 
 .form {
-  margin: 15px 60px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   div {
     margin: 5px;
@@ -51,4 +70,4 @@ body {
     margin: 5px;
     margin-bottom: 15px;
   }
-}
+} 

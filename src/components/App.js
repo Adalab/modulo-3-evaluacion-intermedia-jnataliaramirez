@@ -35,14 +35,24 @@ function App() {
     setData([...data, newClub]);
 
     setNameClub('');
+    setWeek(false);
+    setWeekend(false);
   };
 
   const handleFilter = (ev) => {
-    setFilterData(ev.target.value);
+    setFilterData(ev.currentTarget.value);
   };
 
-  // * Funcion render
+  const handleClick = ev => {
+    data.splice(ev.currentTarget.id, 1)
+    setData([...data])
+  }
+
+
+    // * Funcion render
   const renderData = () => {
+    console.log(filterData)
+    console.log(data)
     return data
       .filter((aData) => {
         if (filterData === 'openOnWeekdays') {
@@ -54,16 +64,18 @@ function App() {
       })
       .map((aData, index) => {
         return (
-          <article key={index} className='card__item'>
+          <article key={index} id={index} className='card__item'>
             <h3>
-              #{index}: {aData.name}
-            </h3>
+              
+             {aData.name} <i className="fa fa-times" aria-hidden="true" onClick={handleClick}  id={index}></i>
+            </h3> 
+            
             <p>
               Abierto entre semana:{' '}
               {aData.openOnWeekdays === true ? 'Sí' : 'No'}
             </p>
             <p>
-              Abierto el fin desemana:{' '}
+              Abierto el fin de semana:{' '}
               {aData.openOnWeekend === true ? 'Sí' : 'No'}
             </p>
           </article>
@@ -108,6 +120,8 @@ function App() {
                   name='openWeek'
                   value={week}
                   onChange={handleFormWeek}
+                  checked={week}
+
                 />
                 ¿Abre entre semana?
               </label>
@@ -120,6 +134,7 @@ function App() {
                   name='openWeekEnd'
                   value={weekend}
                   onChange={handleFormWeekend}
+                  checked={weekend}
                 />
                 ¿Abre los fines de semana?
               </label>
