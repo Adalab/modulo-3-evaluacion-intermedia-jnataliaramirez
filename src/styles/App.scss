@@ -1,0 +1,54 @@
+body {
+  margin: 0 15px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  select {
+    text-align: center;
+    width: 200px;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media screen and (min-width: 765px) {
+  grid-template-columns: 1fr 1fr 1fr;
+    
+  }
+
+  &__item {
+    border: 2px solid lightgray;
+    margin: 15px auto 10px;
+    // margin-top: 15px;
+    // margin-bottom: 15px;
+    width: 250px;
+    padding: 0 0 0 10px;
+    border-radius: 15px;
+  }
+}
+
+.form {
+  margin: 15px 60px 10px;
+
+  div {
+    margin: 5px;
+  }
+
+  label {
+    margin-right: 5px;
+  }
+
+  button {
+    margin: 5px;
+    margin-bottom: 15px;
+  }
+}
